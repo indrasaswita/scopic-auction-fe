@@ -1,0 +1,63 @@
+
+<div class="itemdetail-wrapper" [hidden]="cookie.get('accessToken') !== ''">
+	<app-login
+		(afterLogin)="afterLoginSuccess()"
+	></app-login>
+</div>
+
+<div class="itemdetail-wrapper" *ngIf="cookie.get('accessToken') !== '' && item">
+	<div class="itemdetail-header">
+		<div class="image" [style.background-image]="'url(' + item.imageurl + ')'"></div>
+		<div class="text">
+			<div class="category" *ngIf="item.itemcategory.iconstring">
+				<fa-icon [icon]="fadMobile" [fixedWidth]="true" *ngIf="item.itemcategory.iconstring==='fadMobile'"></fa-icon>
+				<fa-icon [icon]="fadHouse" [fixedWidth]="true" *ngIf="item.itemcategory.iconstring==='fadHouse'"></fa-icon>
+				<fa-icon [icon]="fadMugHot" [fixedWidth]="true" *ngIf="item.itemcategory.iconstring==='fadMugHot'"></fa-icon>
+				<fa-icon [icon]="fadHourglass" [fixedWidth]="true" *ngIf="item.itemcategory.iconstring==='fadHourglass'"></fa-icon>
+				<fa-icon [icon]="fadFrenchFries" [fixedWidth]="true" *ngIf="item.itemcategory.iconstring==='fadFrenchFries'"></fa-icon>
+				<fa-icon [icon]="fadMask" [fixedWidth]="true" *ngIf="item.itemcategory.iconstring==='fadMask'"></fa-icon>
+				<fa-icon [icon]="fadFingerprint" [fixedWidth]="true" *ngIf="item.itemcategory.iconstring==='fadFingerprint'"></fa-icon>
+				<fa-icon [icon]="fadGamepadAlt" [fixedWidth]="true" *ngIf="item.itemcategory.iconstring==='fadGamepadAlt'"></fa-icon>
+				<fa-icon [icon]="fadSun" [fixedWidth]="true" *ngIf="item.itemcategory.iconstring==='fadSun'"></fa-icon>
+				<fa-icon [icon]="fadDrum" [fixedWidth]="true" *ngIf="item.itemcategory.iconstring==='fadDrum'"></fa-icon>
+				<br>
+				{{item.itemcategory.name}}
+			</div>
+			<div class="name">
+				{{item.name}}
+			</div>
+			<div class="status" [ngClass]="item.status.toLowerCase()">
+				{{item.status}}
+			</div>
+		</div>
+		<div class="bid">
+			<div class="ammount" *ngIf="item.endbidamount">
+				${{item.endbidamount}}
+			</div>
+			<div class="lastbid" *ngIf="item.updated_at">
+				<small>
+					{{global.getDatetime(item.updated_at) | date: 'dd MMM yyyy'}}
+				</small><br>
+				{{global.getDatetime(item.updated_at) | date: 'HH:mm'}}
+			</div>
+		</div>
+	</div>
+	<div class="itemdetail-auctions-wrapper" *ngIf="item.itemusers">
+		<div class="auction-bid-wrapper">
+			<input type="number" max="1000000" [(ngModel)]="newbidamount">
+			<button class="btn btn-primary" (click)="bid()">Bid!</button>
+		</div>
+		<ng-container *ngIf="item.itemusers.length > 0">
+			<app-itemdetail-detailauction
+				*ngFor="let itemuser of item.itemusers; let idx = index"
+				[name]="itemuser.user?.name"
+				[bidamount]="itemuser.bidamount"
+				[updated_at]="global.getDatetime(itemuser.created_at)"
+				[index]="idx"
+			></app-itemdetail-detailauction>
+		</ng-container>
+		<ng-container *ngIf="item.itemusers.length == 0">
+			NO AUCTION YET!
+		</ng-container>
+	</div>
+</div>

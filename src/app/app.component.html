@@ -1,0 +1,67 @@
+
+<div class="d-flex" [ngClass]="{'toggled': toggled}">
+
+	<!-- Sidebar -->
+	<div class="bg-light border-right d-md-none" id="sidebar-wrapper">
+		<div class="sidebar-heading">
+			INDRA SASWITA
+		</div>
+		<div class="list-group list-group-flush">
+			<a class="list-group-item list-group-item-action" *ngFor="let menu of menus; let i = index" [ngClass]="{'selected':menu.showdetail}" (click)="toggleDetail(menu)">
+				<div class="label">
+					{{menu.label}}
+				</div>
+				<ul class="detail-wrapper" *ngIf="menu.showdetail">
+					<li class="list-detail" *ngFor="let item of menu.items">
+						<a href="admin/{{item.url}}" (click)="setCurrentPage(item)">
+							{{item.label}}
+						</a>
+					</li>
+				</ul>
+			</a>
+		</div>
+	</div>
+	<!-- /#sidebar-wrapper -->
+
+	<!-- Page Content -->
+	<div id="page-content-wrapper">
+
+		<nav class="navbar navbar-expand navbar-light bg-light border-bottom">
+			<button class="btn btn-sm d-md-none falist" (click)="togglesidebar()">
+				<fa-icon [icon]="fasList"></fa-icon>
+			</button>
+
+			<div class="d-md-none heading-wrapper" id="navbarSupportedContent">
+				<div class="heading">
+					indrasaswita.com
+				</div>
+			</div>
+
+			<div class="navbar-list-block d-none d-md-flex" id="navbarSupportedContent">
+				<div class="heading">
+					indrasaswita.com
+				</div>
+				<ul class="navbar-nav">
+					<li ngbDropdown class="d-inline-block" *ngFor="let menu of menus; let i = index">
+      <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
+      	{{menu.label}}
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+       <button ngbDropdownItem *ngFor="let item of menu.items">{{item.label}}</button>
+      </div>
+    	</li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="content">
+			<div class="router-outlet">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<comp-footer></comp-footer>

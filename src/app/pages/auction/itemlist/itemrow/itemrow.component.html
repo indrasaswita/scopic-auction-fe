@@ -1,0 +1,23 @@
+
+<div class="itemrow" [ngClass]="data.status.toLowerCase()" (click)="goToDetail()">
+	<div class="image" [style.background-image]="'url(' + data.imageurl + ')'"></div>
+	<div class="text">
+		<div class="category">
+			{{data.itemcategory.name}}
+		</div>
+		<div class="name">
+			{{data.name}}
+		</div>
+		<div class="status" [ngClass]="data.status.toLowerCase()">
+			{{data.status}}
+		</div>
+	</div>
+	<div class="bid">
+		<div class="ammount" *ngIf="data.endbidamount">
+			${{data.endbidamount}}
+		</div>
+		<div class="ammount" *ngIf="!data.endbidamount">
+			<fa-icon [icon]="fadHourglassStart" [fixedWidth]="true"></fa-icon>
+		</div>
+	</div>
+</div>

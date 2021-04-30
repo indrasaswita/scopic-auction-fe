@@ -1,0 +1,29 @@
+.detailauction-wrapper{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: calc(.2vw + 2px) calc(.7vw + 7px);
+	margin: calc(.1vw + 1px);
+	border-radius: 1000px;
+	transition: .2s all;
+	&.even:not(:hover),
+	&.even:not(:focus), {
+		background-color: #f2f2f2;
+	}
+	&:hover,
+	&:focus {
+		background-color: #777 !important;
+		color: white;
+	}
+	.name{
+		flex: 1;
+		.time{
+			font-size: 80%;
+			opacity: .5;
+			font-weight: 600;
+		}
+	}
+	.amount{
+		font-weight: 600;
+	}
+}

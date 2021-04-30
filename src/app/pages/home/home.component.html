@@ -1,0 +1,162 @@
+<div class="home-wrapper">
+	<div class="home-row intro">
+		<div class="text">
+			<div class="title">
+				HEY! I'M <span class="clr-primary">INDRA</span>
+			</div>
+			<div class="subtitle">
+				I AM A <span class="clr-primary">WEB</span> DEVELOPER
+			</div>
+			<div class="content">
+				{{content.substring(0, showlength)}}
+				<div class="flipflop" [ngClass]="{'active':isflipflopactive}">&nbsp;</div>
+			</div>
+			<div class="link-wrapper">
+				<a class="list" href="https://www.linkedin.com/in/indra-saswita-a3138166/" target="_blank">
+					<fa-icon [icon]="fabLinkedin"></fa-icon>
+				</a>
+				<a class="list" href="https://github.com/indrasaswita" target="_blank">
+					<fa-icon [icon]="fabGithub"></fa-icon>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="home-row image">
+		<div class="image">
+		</div>
+		<div class="divider">
+		</div>
+		<div class="text">
+			<div class="badge">
+				ABOUT ME
+			</div>
+			<div class="title">
+				DO SOME AWESOME STUFF WITH ME
+			</div>
+			<div class="quote">
+				Web Developer
+			</div>
+			<div class="content">
+				As a recent graduate from Binus University of Computer Science, I am excited to begin my career in the field of computer engineering and love to learn new algorithm and programming language. Please look at my resume below, to learn more about me.
+			</div>
+			<div class="button-wrapper">
+				&nbsp;
+				<button class="btn btn-outline-primary" href="" *ngIf="">
+					Download CV
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="home-row artwork">
+		<div class="text">
+			<div class="badge">
+				ARTWORK
+			</div>
+			<div class="title">
+				KNOW ME DEEPER
+			</div>
+			<div class="content">
+				I am exited to introduce some projects that I worked around. Some project are closed and cannot be shown to public, but otherwise can be seen below.
+			</div>
+		</div>
+		<div class="text">
+			<div class="quote">
+				JPCC.tv
+			</div>
+			<div class="content">
+				A video platform website that we can watch sunday service videos without any ads. This site was develop with Angular CLI and Laravel, also equipped with Pusher websocket for chat system.
+			</div>
+			<div class="button-wrapper">
+				<a class="btn btn-outline-primary" href="https://jpcc.tv" target="_blank">
+					Go to JPCC.tv
+				</a>
+			</div>
+		</div>
+		<div class="text">
+			<div class="quote">
+				Number-Klotski
+			</div>
+			<div class="content">
+				A simple game of klotski. A sliding block puzzle thought to have originated in the early 20th century. The game is divided into 3 levels easy, medium, and hard. Let's try it!
+			</div>
+			<div class="button-wrapper">
+				<a class="btn btn-outline-primary" href="/game/number-klotski">
+					Go to Klotski
+				</a>
+			</div>
+		</div>
+		<div class="text">
+			<div class="quote">
+				Hangman
+			</div>
+			<div class="content">
+				Hangman is a paper and pencil guessing game for two or more players. One player thinks of a word, phrase or sentence and the other(s) tries to guess it by suggesting letters within a certain number of guesses. Very simple, isn't it? Now you can play in digital platform.
+			</div>
+			<div class="button-wrapper">
+				<a class="btn btn-outline-primary" href="/game/hangman">
+					Go to Hangman
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="home-row experience">
+		<div class="text">
+			<div class="title">
+				MY EXPERIENCE
+			</div>
+			<div class="exp-wrapper">
+				<ul class="exp">
+					<ng-container *ngFor="let experience of experiences; let i = index">
+						<li class="list">
+							<div class="data-date">
+								{{experience.years}}
+							</div>
+							<div class="type">
+								{{experience.type}}
+							</div>
+							<div class="title">
+								{{experience.title}}
+							</div>
+							<div class="text" [innerHTML]="experience.description">
+							</div>
+						</li>
+					</ng-container>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="home-row skill">
+		<div class="text">
+			<div class="title">
+				MY BEST SKILL
+			</div>
+			<div class="skill-wrapper">
+				<div class="skill-container">
+					<p>Programming is never stop in any level, that's why I need to improve my skill in any environment. I am a fast learner programmer.</p>
+
+					<p>At this point, I want to show what are the strengths in me. I understand and it is very clear that something like this are not enough and must be developed.</p>
+
+					<p>If you are interested in my skills, contact me by email. Maybe my expertise can help your needs.</p>
+					<div class="button-wrapper">
+						<a class="btn btn-outline-primary" href="https://wa.me/+6281315519889" target="_blank">
+							Chat me via <fa-icon [icon]="fabWhatsapp"></fa-icon> Whatsapp
+						</a>
+					</div>
+				</div>
+				<div class="divider"></div>
+				<ul class="skill-container">
+					<li class="list" *ngFor="let skill of skills">
+						<div class="title">
+							{{skill.title}}
+						</div>
+						<div class="bar">
+							<div class="fill" style="width: {{skill.value}};"></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<comp-scrolltotop></comp-scrolltotop>

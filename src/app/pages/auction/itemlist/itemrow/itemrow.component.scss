@@ -1,0 +1,102 @@
+.itemrow{
+	display: inline-flex;
+	align-items: center;
+	background-color: #eee;
+	border: 1px solid #d8d8d8;
+	border-radius: calc(1vw + 2px);
+	padding: 3px;
+	margin: calc(.5vw + 1px);
+	transition: .2s all;
+	&:not(.sold){
+		cursor: pointer;
+	}
+	&:not(.sold):hover,
+	&:not(.sold):focus{
+		margin: calc(.5vw);
+		border-width: 2px;
+		background-color: #f4f4f4;
+		.bid{
+			.ammount{
+				background-color: #fffff4;
+				border-color: #aa7;
+				color: #aa7;
+			}
+		}
+	}
+	&.sold{
+		opacity: .5;
+	}
+	.image{
+		width: 6.5vw;
+		height: 6.5vw;
+		max-width: 65px;
+		max-height: 65px;
+		border-radius: 1vw;
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-color: white;
+		border: 1px solid #d8d8d8;
+		margin: 0 1.5vw 0 .5vw;
+	}
+	.text{
+		flex: 1;
+		line-height: 1.35;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		min-width: calc(6vw + 60px);
+		.category{
+			text-transform: uppercase;
+			font-weight: 800;
+			font-size: 70%;
+			color: rgba(0,0,0,.5);
+		}
+		.name{
+			max-width: calc(6vw + 60px);
+			text-transform: capitalize;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+		.status{
+			display: inline-block;
+			font-size: 65%;
+			font-weight: bold;
+			color: white;
+			padding: 2px 7px;
+			border-radius: 1000px;
+			text-transform: uppercase;
+			&.active{
+				background-color: #060;
+			}
+			&.sold{
+				background-color: #666;
+			}
+			&.pending{
+				background-color: #a94;
+			}
+		}
+	}
+	.bid{
+		height: 100%;
+		font-size: 80%;
+		font-weight: bold;
+		.ammount{
+			background-color: white;
+			color: #777;
+			width: 4vw;
+			height: 4vw;
+			max-width: 40px;
+			max-height: 40px;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 1000px;
+			border: 1px solid #d8d8d8;
+			fa-icon{
+				font-size: 130%;
+			}
+		}
+	}
+}

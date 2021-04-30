@@ -1,0 +1,137 @@
+@import "~bootstrap/scss/bootstrap";
+@import "variables.scss";
+
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-Black.ttf') format('truetype');
+		font-weight: 900;
+}
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-BlackItalic.ttf') format('truetype');
+		font-weight: 900;
+		font-style: italic;
+}
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-Bold.ttf') format('truetype');
+		font-weight: bold; //700
+}
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-BoldItalic.ttf') format('truetype');
+		font-weight: bold; //700
+		font-style: italic;
+}
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-Italic.ttf') format('truetype');
+		font-weight: normal; //400
+		font-style: italic;
+}
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-Regular.ttf') format('truetype');
+		font-weight: normal; //400
+}
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-MediumItalic.ttf') format('truetype');
+		font-style: italic;
+		font-weight: 600;
+}
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-Medium.ttf') format('truetype');
+		font-weight: 600;
+}
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-LightItalic.ttf') format('truetype');
+		font-style: italic;
+		font-weight: 200;
+}
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-Light.ttf') format('truetype');
+		font-weight: 200;
+}
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-ThinItalic.ttf') format('truetype');
+		font-style: italic;
+		font-weight: 100;
+}
+@font-face {
+		font-family: 'Google';
+		src: url('assets/fonts/GoogleSans-Thin.ttf') format('truetype');
+		font-weight: 100;
+}
+
+
+@media screen and (max-width: 450px) {
+	body {
+		font-size: 10px;
+	}
+}
+
+@media screen and (min-width: 451px) and (max-width: 767px) {
+	body {
+		font-size: 12px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+	body {
+		font-size: 14px;
+	}
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+	body {
+		font-size: 16px;
+	}
+}
+
+@media screen and (min-width: 1201px) {
+	body {
+		font-size: 17px;
+	}
+}
+
+body{
+	padding: 0;
+	margin: 0;
+	font-family: 'Google';
+	*:hover,
+	*:focus{
+		outline: none;
+	}
+}
+
+*,
+:after,
+:before {
+	box-sizing: border-box;
+}
+
+
+.clr-primary{
+	color: $primary-color;
+}
+.bg-primary{
+	color: $primary-color;
+}
+
+::selection {
+	background: rgba(255,186,0,.3);
+}
+
+button{
+	font-family: inherit;
+	font-size: inherit;
+	&:focus{
+		box-shadow: none !important;
+	}
+}

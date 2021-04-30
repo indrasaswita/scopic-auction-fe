@@ -1,0 +1,11 @@
+<div class="detailauction-wrapper" [ngClass]="{'even': index%2===0}">
+	<div class="name">
+		{{name}}
+		<span class="time">
+			{{updated_at | date: 'HH:mm'}}
+		</span>
+	</div>
+	<div class="amount">
+		${{bidamount | number: '1.0-0'}}
+	</div>
+</div>
