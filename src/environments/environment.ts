@@ -6,11 +6,8 @@ export const environment = {
 	production: false,
 	version: '1.1',
 	lastUpdate: 'Desember 2020',
-	appName: 'jpcc',
-	adminPass: 'jpcc',
-	// apiUrl: 'https://dev-jpcc-mobile-api.skyporter.id/api/',
+	appName: 'auction',
 	apiUrl: 'http://localhost/scopic/be/public/api/',
-	// apiUrl: 'https://dev-api-tv.jpcc.my.id/onlineevents/active',
 	enableDebug: true,
 	pusher: {
 		key: '2b7a847e874afb5b4aa3',

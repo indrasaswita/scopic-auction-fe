@@ -1,11 +1,9 @@
 export const environment = {
 	production: true,
-	lastUpdate: 'April 2020',
-	version: '1.0.3',
-	appName: 'jpcc',
-	adminPass: 'jpcc@DiP0',
-	apiUrl: 'https://scopic.indrasaswita.com/api/',
-	// apiUrl: 'https://dev-jpcc-mobile-api.skyporter.id/api/',
+	version: '1.7',
+	lastUpdate: 'Desember 2020',
+	appName: 'auction',
+	apiUrl: 'https://auction-be.indrasaswita.com/api/',
 	enableDebug: false,
 	pusher: {
 		key: '2b7a847e874afb5b4aa3',

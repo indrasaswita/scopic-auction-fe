@@ -66,7 +66,11 @@ export class AuctiontimerComponent implements OnInit {
   			if(this.servertime != null) {
   				this.deviation = nowtime.getTime() - this.servertime.getTime();
   			}
-  		}
+  		},
+  		(error: any) => {
+
+  		},
+  		false
 		);
   }
 

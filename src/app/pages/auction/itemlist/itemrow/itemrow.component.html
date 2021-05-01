@@ -4,6 +4,7 @@
 	<div class="text">
 		<div class="category">
 			{{data.itemcategory.name}}
+			<span *ngIf="data.created_by == user?.id"> - MY ITEM</span>
 		</div>
 		<div class="name">
 			{{data.name}}

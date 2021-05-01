@@ -49,6 +49,7 @@ export class ItemdetailComponent implements OnInit {
 	public item: any;
 	public pusherClient: Pusher | null;
 	public autobid: boolean;
+	public onBidInputFocused: boolean;
 	public isloadingbid: boolean;
 	public errorMessage: string;
 	public user: any;
@@ -73,6 +74,7 @@ export class ItemdetailComponent implements OnInit {
 		this.newbidamount = 0;
 		this.pusherClient = null;
 		this.autobid = false;
+		this.onBidInputFocused = false;
 		this.errorMessage = "";
 		this.user = this.cookie.get('user') != "" ? JSON.parse(this.cookie.get('user')) : {};
 		this.interval = null;
@@ -85,14 +87,23 @@ export class ItemdetailComponent implements OnInit {
 		this.initEcho();
 	}
 
+	public onBidFocus(): void{
+		this.onBidInputFocused = true;
+		if(this.autobid)
+			this.autobid = false;
+	}
+
+	public onBidFocusout(): void {
+		this.onBidInputFocused = false;
+	}
+
 	public toggleOnOffAuto(): void {
 		this.autobid = !this.autobid;
 
 
 		this.errorMessage = "";
-		if(this.item?.itemusers[0].user_id != this.user?.id) {
-			this.bid();
-			this.errorMessage = "";
+		if(this.item?.itemusers[0]?.user_id != this.user?.id) {
+			this.checkAutoBid();
 		} else {
 			this.errorMessage = "You cannot bid since you got the highest bidding amount.";
 		}
@@ -101,8 +112,7 @@ export class ItemdetailComponent implements OnInit {
 		if(this.autobid == true){
 			this.interval = setInterval(() => {
 				if(this.item?.itemusers[0]?.user_id != this.user?.id) {
-					this.bid();
-					this.errorMessage = "";
+					this.checkAutoBid();
 				}
 			}, 2500);
 		}else{
@@ -124,17 +134,27 @@ export class ItemdetailComponent implements OnInit {
 				this.item.itemusers[0].user = data.user;
 				this.item.endbidamount = data.itemuser.bidamount;
 
-				this.newbidamount = data.itemuser.bidamount + 1;
+				if(!this.onBidInputFocused)
+					this.newbidamount = parseInt(data.itemuser.bidamount+"") + 1;
 				this.errorMessage = "";
-				if(this.autobid) {
-					if(this.cookie.get('maxBidAmount') != ''){
-						if(data.itemuser.bidamount < this.cookie.get('maxBidAmount')){
-							this.bid();
-						}
-					}
-				}
+				
+				this.checkAutoBid();
 			}
 		);
+	}
+
+	public checkAutoBid(): void {
+		if(this.autobid) {
+			if(this.cookie.get('maxBidAmount') != ''){
+				if(this.newbidamount <= parseInt(this.cookie.get('maxBidAmount'))){
+					this.errorMessage = "";
+					this.bid();
+				} else {
+					this.autobid = false;
+					this.errorMessage = "Need to bid manually! More than maximum ($"+this.cookie.get('maxBidAmount')+") of your auto bid amount.";
+				}
+			}
+		}
 	}
 
 	public getItemDetail(): void {
@@ -149,7 +169,7 @@ export class ItemdetailComponent implements OnInit {
 			(data: any) => {
 				this.item = data.item;
 
-				this.newbidamount = ( this.item.endbidamount ? this.item.endbidamount : 0 ) + 1;
+				this.newbidamount = ( this.item.endbidamount ? parseInt(this.item.endbidamount+"") : 0 ) + 1;
 
 				if(this.item.status === "Draft") {
 					this.auctionend_at = this.global.getLocalStringTime(new Date());

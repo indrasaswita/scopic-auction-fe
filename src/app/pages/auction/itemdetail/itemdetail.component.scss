@@ -111,6 +111,10 @@
 	.itemdetail-auctions-wrapper,
 	.itemdetail-auction-owner {
 		padding: calc(10px + 1vw) calc(5px + .5vw);
+		.intro{
+			padding: calc(7px + .7vw);
+			font-size: 110%;
+		}
 		.auction-header-wrapper{
 			display: flex;
 			padding: 0 calc(2px + .2vw);

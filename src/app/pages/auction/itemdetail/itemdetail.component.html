@@ -84,9 +84,14 @@
 		</div>
 	</div>
 	<div class="itemdetail-auctions-wrapper" *ngIf="item.itemusers && item.created_by != user.id && item.status != 'Sold'">
+		<div class="intro">
+			Hi, {{user.name}}!<br>
+			Your max auto bid: ${{user.maxbidamount|number:'1.0-0'}}.<br>
+			Your funds: ${{user.fund|number:'1.0-0'}}.
+		</div>
 		<div class="auction-header-wrapper">
 			<div class="auction-bid-wrapper">
-				<input type="number" max="1000000" [(ngModel)]="newbidamount">
+				<input type="number" max="1000000" [(ngModel)]="newbidamount" (focus)="onBidFocus()" (focusout)="onBidFocusout()">
 				<button class="bid-btn" (click)="bid()">Bid!</button>
 			</div>
 			<div class="auction-autobid-toggle">
