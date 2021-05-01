@@ -1,7 +1,7 @@
 export const environment = {
 	production: true,
-	version: '1.7',
-	lastUpdate: 'Desember 2020',
+	version: '1.8',
+	lastUpdate: 'May 2021',
 	appName: 'auction',
 	apiUrl: 'https://auction-be.indrasaswita.com/api/',
 	enableDebug: false,
