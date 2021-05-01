@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
 	faList as fasList
 } from '@fortawesome/pro-solid-svg-icons';
+import { CookieService } from 'ngx-cookie-service';
+import { GlobalService } from './services/global.service';
 
 @Component({
 	selector: 'app-root',
@@ -14,8 +17,14 @@ export class AppComponent {
 	public toggled: boolean;
 
 	public menus: any;
+	public user: any;
 
-	constructor(){
+	constructor(
+		private cookie: CookieService,
+		public global: GlobalService,
+		private router: Router,
+	){
+		this.user = this.cookie.get('user') != "" ? JSON.parse(this.cookie.get('user')) : null;
 		this.toggled = false;
 		this.menus = [
 			{
@@ -88,5 +97,10 @@ export class AppComponent {
 
 	public setCurrentPage(item: any){
 
+	}
+
+	public logout(){
+		this.cookie.deleteAll('/');
+		this.router.navigateByUrl('/auction/itemlist');
 	}
 }

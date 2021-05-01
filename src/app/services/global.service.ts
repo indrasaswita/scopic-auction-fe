@@ -9,18 +9,11 @@ import 'moment-precise-range-plugin';
 export class GlobalService {
 	public api: string;
 
-	public clientPublicIP: string;
-	public accessToken: string;
-	public tokenType: string;
-	public defaultresolution: number;
 	public version: string;
-	public bodybackground: string;
-	public bodybackgroundimage: string;
 	public loginmodalshown = false;
 	public refreshstatus = 0;
 
 	public videogroupcategories = [];
-	public timediff: number;
 	public defaultpaginate: number;
 
 	public admin: any; // ini seluruh data admin
@@ -35,22 +28,10 @@ export class GlobalService {
 		this.globalLoading = false;
 		this.lastUpdate = environment.lastUpdate;
 
-		this.accessToken = '';
-		this.tokenType = '';
 		this.api = this.setProtocol(environment.apiUrl);
-		this.clientPublicIP = '';
-		this.defaultresolution = 0;
-		this.bodybackground = '';
-		this.bodybackgroundimage = '';
-		this.timediff = 0;
-		this.defaultpaginate = 0;
-		this.admin = {}; // ini seluruh data admin
-		this.lastUpdate = '';
 		this.version = environment.version;
 		this.appName = environment.appName;
-		this.refreshstatus = 0;
 		this.defaultpaginate = 25;
-		this.defaultresolution = 720;
 
 		this.pusherKey = environment.pusher.key;
 		this.pusherCluster = environment.pusher.cluster;
@@ -67,6 +48,47 @@ export class GlobalService {
 			}
 		} 
 		return '';
+	}
+
+	public getLocalStringTime(dt: Date): string{
+		let temp = "";
+		temp += dt.getFullYear().toString().padStart(4, "0") + "-";
+		temp += (dt.getMonth() + 1).toString().padStart(2, "0")+"-";
+		temp += dt.getDate().toString().padStart(2, "0")+"T";
+		temp += dt.getHours().toString().padStart(2, "0")+":";
+		temp += dt.getMinutes().toString().padStart(2, "0");
+
+		return temp;
+	}
+
+	public dhm(t: number): any{
+		var cd = 24 * 60 * 60 * 1000,
+			ch = 60 * 60 * 1000,
+			cm = 60 * 1000,
+			cs = 1000,
+			d = Math.floor( t / cd ),
+			h = Math.floor( (t - d * cd) / ch ),
+			m = Math.floor( (t - d * cd - h * ch) / cm ),
+			s = Math.floor( (t - d * cd - h * ch - m * cm) / cs ),
+			pad = function(n: number){ return n < 10 ? '0' + n : n; };
+		if( m === 60 ){
+			h++;
+			m = 0;
+		}
+		if( h === 24 ){
+			d++;
+			h = 0;
+		}
+		return [d%7, h, m, s];
+	}
+
+	public addHours = function(dt: Date, h: number): Date {
+	  dt.setTime(dt.getTime() + (h*60*60*1000));
+	  return dt;
+	}
+
+	public floor(x: number) : string{
+		return Math.floor(x).toString();
 	}
 
 	public dateDiffInString(d1: Date | null, d2: Date | null = null): string {

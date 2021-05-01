@@ -42,14 +42,11 @@
 					indrasaswita.com
 				</div>
 				<ul class="navbar-nav">
-					<li ngbDropdown class="d-inline-block" *ngFor="let menu of menus; let i = index">
-      <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
-      	{{menu.label}}
-      </button>
-      <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-       <button ngbDropdownItem *ngFor="let item of menu.items">{{item.label}}</button>
-      </div>
-    	</li>
+					<li *ngif="user || global.user">
+						<button class="btn" (click)="logout()">
+							Logout
+						</button>
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -63,5 +60,9 @@
 
 </div>
 
-
+<ng-container *ngIf="global">
+	<app-global-loading
+		*ngIf="global.globalLoading"
+	></app-global-loading>
+</ng-container>
 <comp-footer></comp-footer>

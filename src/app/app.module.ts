@@ -16,6 +16,9 @@ import { ItemrowComponent } from './pages/auction/itemlist/itemrow/itemrow.compo
 import { ItemdetailComponent } from './pages/auction/itemdetail/itemdetail.component';
 import { DetailauctionComponent } from './pages/auction/itemdetail/detailauction/detailauction.component';
 import { LoginComponent } from './components/login/login.component';
+import { GlobalLoadingComponent } from './components/global-loading/global-loading.component';
+import { CountdownComponent } from './components/countdown/countdown.component';
+import { AuctiontimerComponent } from './pages/auction/itemdetail/auctiontimer/auctiontimer.component';
 
 @NgModule({
 	declarations: [
@@ -28,6 +31,9 @@ import { LoginComponent } from './components/login/login.component';
   ItemdetailComponent,
   DetailauctionComponent,
   LoginComponent,
+  GlobalLoadingComponent,
+  CountdownComponent,
+  AuctiontimerComponent,
 	],
 	imports: [
 		BrowserModule,

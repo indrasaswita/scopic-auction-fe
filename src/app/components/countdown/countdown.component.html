@@ -1,0 +1,15 @@
+<div class="countdown-wrapper">
+	<div class="countdown-group" *ngFor="let item of timecountdown; let i = index">
+		<div class="angka">
+			<div class="puluhan">
+				{{global.floor(item/10)}}
+			</div>
+			<div class="satuan">
+				{{item%10}}
+			</div>
+		</div>
+		<div class="text">
+			{{strcountdown[i]}}
+		</div>
+	</div>
+</div>

@@ -34,7 +34,7 @@ export class HttpService {
 		return new HttpHeaders(temp);
 	}
 
-	sendGetRequest(withAccessToken: boolean, url: string, params: any = null, whendone: Function | null = null, whenfailed: Function | null = null):void {
+	sendGetRequest(withAccessToken: boolean, url: string, params: any = null, whendone: Function | null = null, whenfailed: Function | null = null, showloading: boolean = true):void {
 		if(this.global.globalLoading)
 			return;
 
@@ -46,7 +46,7 @@ export class HttpService {
 		});
 
 		url = url.startsWith('/') ? url.substring(1) : url;
-		this.global.globalLoading = true;
+		this.global.globalLoading = showloading;
 		this.httpClient.get(this.global.api + url, { 
 			headers: reqHeader, params: params 
 		}).subscribe((response: any) => {
@@ -68,7 +68,7 @@ export class HttpService {
 		});
 	}
 
-	sendPostRequest(withAccessToken: boolean, url: string, params: object | null = null, whendone: Function | null = null, whenfailed: Function | null = null): void {
+	sendPostRequest(withAccessToken: boolean, url: string, params: object | null = null, whendone: Function | null = null, whenfailed: Function | null = null, showloading: boolean = true): void {
 		if(this.global.globalLoading)
 			return;
 
@@ -80,7 +80,7 @@ export class HttpService {
 		});
 
 		url = url.startsWith('/') ? url.substring(1) : url;
-		this.global.globalLoading = true;
+		this.global.globalLoading = showloading;
 		this.httpClient.post(this.global.api + url, params, {
 			headers: reqHeader
 		}).subscribe((response: any) => {

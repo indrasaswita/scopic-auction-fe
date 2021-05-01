@@ -1,0 +1,159 @@
+@media screen and (max-width: 450px) {
+	.countdown-wrapper{
+		padding: 10px;
+		.countdown-group{
+			.angka{
+				padding: 0 6px;
+				margin: 6px 0;
+				.puluhan,
+				.satuan{							
+					width: 22px;
+					height: 30px;
+					font-size: 14px;
+					border-radius: 3px;
+					&:not(:first-child){
+						margin-left: 2px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 451px) and (max-width: 767px) {
+	.countdown-wrapper{
+		padding: 15px;
+		.countdown-group{
+			.angka{
+				padding: 0 8px;
+				margin: 8px 0;
+				.puluhan,
+				.satuan{							
+					width: 26px;
+					height: 33px;
+					font-size: 19px;
+					border-radius: 3px;
+					&:not(:first-child){
+						margin-left: 2px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+	.countdown-wrapper{
+		padding: 20px;
+		.countdown-group{
+			.angka{
+				padding: 0 10px;
+				margin: 10px 0;
+				.puluhan,
+				.satuan{							
+					width: 30px;
+					height: 40px;
+					background-color: #222;
+					font-size: 24px;
+					border-radius: 4px;
+					&:not(:first-child){
+						margin-left: 2px;
+					}
+				}
+			}
+			.text{
+				font-size: 95%;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+	.countdown-wrapper{
+		padding: 25px;
+		.countdown-group{
+			.angka{
+				padding: 0 10px;
+				margin: 10px 0;
+				.puluhan,
+				.satuan{							
+					width: 30px;
+					height: 40px;
+					background-color: #222;
+					font-size: 24px;
+					border-radius: 4px;
+					&:not(:first-child){
+						margin-left: 2px;
+					}
+				}
+			}
+			.text{
+				font-size: 85%;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 1201px) {
+	.countdown-wrapper{
+		padding: 25px;
+		.countdown-group{
+			.angka{
+				padding: 0 10px;
+				margin: 10px 0;
+				.puluhan,
+				.satuan{							
+					width: 30px;
+					height: 40px;
+					background-color: #222;
+					font-size: 24px;
+					border-radius: 4px;
+					&:not(:first-child){
+						margin-left: 2px;
+					}
+				}
+			}
+			.text{
+				font-size: 85%;
+			}
+		}
+	}
+}
+
+.countdown-wrapper{
+	display: flex;
+	justify-content: center;
+	.countdown-group{
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		.angka{
+			display: flex;
+			justify-content: center;
+			.puluhan,
+			.satuan{
+				overflow: hidden;
+				background-color: #222;
+				color: white;
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				font-family: Consolas;
+			}
+		}
+		.text{
+				text-transform: uppercase;
+		}
+	}
+}
+
+.time-start{
+	text-align: center;
+	margin-bottom: 20px;
+	fa-icon{
+		color: #ff0;
+		--fa-secondary-color: #040;
+		--fa-secondary-opacity: .5;
+	}
+}

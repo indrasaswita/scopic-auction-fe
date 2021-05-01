@@ -24,10 +24,14 @@
 				{{item.itemcategory.name}}
 			</div>
 			<div class="name">
-				{{item.name}}
+				{{item.name}} 
 			</div>
 			<div class="status" [ngClass]="item.status.toLowerCase()">
 				{{item.status}}
+			</div>
+			<div class="creator" [ngClass]="item.status.toLowerCase()">
+				Owner: {{item.creator.name}} ({{item.creator.userkey}})<br>
+				Auction end at <b>{{global.getDatetime(item.auctionend_at) | date: 'dd MMMM yyyy, HH:mm'}}</b> UTC+7
 			</div>
 		</div>
 		<div class="bid">
@@ -36,18 +40,70 @@
 			</div>
 			<div class="lastbid" *ngIf="item.updated_at">
 				<small>
+					<b>Last bid:</b><br>
 					{{global.getDatetime(item.updated_at) | date: 'dd MMM yyyy'}}
 				</small><br>
 				{{global.getDatetime(item.updated_at) | date: 'HH:mm'}}
 			</div>
 		</div>
 	</div>
-	<div class="itemdetail-auctions-wrapper" *ngIf="item.itemusers">
-		<div class="auction-bid-wrapper">
-			<input type="number" max="1000000" [(ngModel)]="newbidamount">
-			<button class="btn btn-primary" (click)="bid()">Bid!</button>
+	<div class="itemdetail-auction-sold" *ngIf="item.status === 'Sold'">
+		<ng-container *ngIf="item.creator?.id != user?.id">
+			<br><br>
+			Ooops! Sorry, this item is closed for auction.<br>
+			Please try another items.
+		</ng-container>
+		<ng-container *ngIf="item.creator?.id === user?.id">
+			<br><br>
+			Congrats! Your item has been sold at ${{item.endbidamount | number:'1.0-0'}}<br>
+			Your funds will automatically added and updated.
+		</ng-container>
+	</div>
+	<div class="itemdetail-timer-wrapper" *ngIf="item.status === 'Active'">
+		<app-itemdetail-auctiontimer
+			[targettime]="global.getDatetime(item.auctionend_at)"
+			(emitSold)="setStatusSold()"
+		></app-itemdetail-auctiontimer>
+	</div>
+	<div class="itemdetail-auction-owner" *ngIf="item.created_by == user.id && item.status != 'Sold'">
+		<ng-container *ngIf="item.status == 'Draft'">
+			You're the owner of this item.<br><br>
+			Let's set the auction interval below:<br>
+			UNTIL<br>
+			<input type="datetime-local" [(ngModel)]="auctionend_at" /><br><br>
+			<button class="btn btn-primary" (click)="openAuction()">
+				Open Auction
+			</button>
+		</ng-container>
+		<ng-container *ngIf="item.status == 'Active'">
+			{{item.name.toUpperCase()}} is your item.<br>
+			Your item is in auction period.
+		</ng-container>
+		<div class="auction-header-errormessage" *ngIf="errorMessage">
+			{{errorMessage}}
 		</div>
-		<ng-container *ngIf="item.itemusers.length > 0">
+	</div>
+	<div class="itemdetail-auctions-wrapper" *ngIf="item.itemusers && item.created_by != user.id && item.status != 'Sold'">
+		<div class="auction-header-wrapper">
+			<div class="auction-bid-wrapper">
+				<input type="number" max="1000000" [(ngModel)]="newbidamount">
+				<button class="bid-btn" (click)="bid()">Bid!</button>
+			</div>
+			<div class="auction-autobid-toggle">
+				<div class="toggler on" *ngIf="autobid" (click)="toggleOnOffAuto()">
+					<fa-icon [icon]="fadToggleOn"></fa-icon>
+					Auto Bid: On!
+				</div>
+				<div class="toggler off" *ngIf="!autobid" (click)="toggleOnOffAuto()">
+					<fa-icon [icon]="fadToggleOff"></fa-icon>
+					Auto Bid: Off!
+				</div>
+			</div>
+		</div>
+		<div class="auction-header-errormessage" *ngIf="errorMessage">
+			{{errorMessage}}
+		</div>
+		<div class="detail-auction-wrapper" *ngIf="item.itemusers.length > 0">
 			<app-itemdetail-detailauction
 				*ngFor="let itemuser of item.itemusers; let idx = index"
 				[name]="itemuser.user?.name"
@@ -55,9 +111,11 @@
 				[updated_at]="global.getDatetime(itemuser.created_at)"
 				[index]="idx"
 			></app-itemdetail-detailauction>
-		</ng-container>
-		<ng-container *ngIf="item.itemusers.length == 0">
-			NO AUCTION YET!
-		</ng-container>
+		</div>
+		<div class="no-auctions" *ngIf="item.itemusers.length == 0">
+			<fa-icon [icon]="fadUsersSlash"></fa-icon><br>
+			There is still no auction from any user right now!<br>
+			Be the first.
+		</div>
 	</div>
 </div>

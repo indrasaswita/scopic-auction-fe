@@ -1,4 +1,10 @@
 	
+<div class="user" *ngIf="user">
+	Hi, <b>{{user.name}}</b>.<br>
+	Fund: <b>${{user.fund}}</b>.<br>
+	Key: {{user.userkey}}.<br>
+</div>
+
 <div class="itemlist-wrapper">
 	<app-itemlist-itemrow
 		*ngFor="let item of items"

@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpService } from './../../services/http.service';
+import { GlobalService } from './../../services/global.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
 
 	constructor(
 		private http: HttpService,
+		private global: GlobalService,
 		private cookie: CookieService,
 	) { 
 		this.userkey = "";
@@ -35,7 +37,9 @@ export class LoginComponent implements OnInit {
 			params,
 			(data: any) => {
 				this.cookie.set('accessToken', data.token, {path: '/'});
-
+				this.cookie.set('maxBidAmount', data.user.maxbidamount, {path: '/'});
+				this.cookie.set('user', JSON.stringify(data.user), {path: '/'});
+				this.global.user = data.user;
 				setTimeout(() => {
 					this.afterLogin.emit();
 				}, 50);
