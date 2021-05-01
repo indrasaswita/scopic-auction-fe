@@ -23,6 +23,7 @@ export class GlobalService {
 
 	public pusherKey: string;
 	public pusherCluster: string;
+	public user: any;
 
 	constructor() {
 		this.globalLoading = false;
@@ -35,6 +36,7 @@ export class GlobalService {
 
 		this.pusherKey = environment.pusher.key;
 		this.pusherCluster = environment.pusher.cluster;
+		this.user = null;
 	}
 
 	public setProtocol(url: string): string {

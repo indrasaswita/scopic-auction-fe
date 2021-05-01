@@ -2,6 +2,7 @@
 <div class="user" *ngIf="user">
 	Hi, <b>{{user.name}}</b>.<br>
 	Fund: <b>${{user.fund}}</b>.<br>
+	Max Auto Bid: <b>${{user.maxbidamount}}</b>.<br>
 	Key: {{user.userkey}}.<br>
 </div>
 
@@ -10,4 +11,10 @@
 		*ngFor="let item of items"
 		[data]=	"item"
 	></app-itemlist-itemrow>
+</div>
+
+<div class="loadMore" *ngIf="showLoadMore">
+	<button class="btn btn-outline-secondary" (click)="loadMore()">
+		Load More
+	</button>
 </div>

@@ -4,20 +4,23 @@
 	<!-- Sidebar -->
 	<div class="bg-light border-right d-md-none" id="sidebar-wrapper">
 		<div class="sidebar-heading">
-			INDRA SASWITA
+			Monolith Auction System
 		</div>
 		<div class="list-group list-group-flush">
-			<a class="list-group-item list-group-item-action" *ngFor="let menu of menus; let i = index" [ngClass]="{'selected':menu.showdetail}" (click)="toggleDetail(menu)">
+			<a class="list-group-item list-group-item-action" href="/">
 				<div class="label">
-					{{menu.label}}
+					Intro
 				</div>
-				<ul class="detail-wrapper" *ngIf="menu.showdetail">
-					<li class="list-detail" *ngFor="let item of menu.items">
-						<a href="admin/{{item.url}}" (click)="setCurrentPage(item)">
-							{{item.label}}
-						</a>
-					</li>
-				</ul>
+			</a>
+			<a class="list-group-item list-group-item-action" href="/auction/itemlist">
+				<div class="label">
+					Home
+				</div>
+			</a>
+			<a class="list-group-item list-group-item-action" (click)="logout()" *ngIf="user || global.user">
+				<div class="label">
+					Logout
+				</div>
 			</a>
 		</div>
 	</div>
@@ -33,16 +36,26 @@
 
 			<div class="d-md-none heading-wrapper" id="navbarSupportedContent">
 				<div class="heading">
-					indrasaswita.com
+					Monolith Auction System
 				</div>
 			</div>
 
 			<div class="navbar-list-block d-none d-md-flex" id="navbarSupportedContent">
 				<div class="heading">
-					indrasaswita.com
+					Monolith Auction System
 				</div>
 				<ul class="navbar-nav">
-					<li *ngif="user || global.user">
+					<li>
+						<a href="/" class="btn">
+							Intro
+						</a>
+					</li>
+					<li>
+						<a href="/auction/itemlist" class="btn">
+							Home
+						</a>
+					</li>
+					<li *ngIf="user || global.user">
 						<button class="btn" (click)="logout()">
 							Logout
 						</button>
@@ -65,4 +78,3 @@
 		*ngIf="global.globalLoading"
 	></app-global-loading>
 </ng-container>
-<comp-footer></comp-footer>

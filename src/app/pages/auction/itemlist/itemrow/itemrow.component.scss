@@ -7,9 +7,7 @@
 	padding: 3px;
 	margin: calc(.5vw + 1px);
 	transition: .2s all;
-	&:not(.sold){
-		cursor: pointer;
-	}
+	cursor: pointer;
 	&:not(.sold):hover,
 	&:not(.sold):focus{
 		margin: calc(.5vw);
@@ -73,7 +71,7 @@
 			&.sold{
 				background-color: #666;
 			}
-			&.pending{
+			&.draft{
 				background-color: #a94;
 			}
 		}

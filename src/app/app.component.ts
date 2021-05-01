@@ -101,6 +101,7 @@ export class AppComponent {
 
 	public logout(){
 		this.cookie.deleteAll('/');
-		this.router.navigateByUrl('/auction/itemlist');
+		this.global.user = null;
+		window.location.reload();
 	}
 }

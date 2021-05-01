@@ -1,0 +1,31 @@
+.login-wrapper{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	min-height: 70vh;
+	.login-form{
+		width: 350px;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		font-size: 120%;
+		input{
+			margin: calc(3px + .3vw) 0;
+			width: 100%;
+		}
+		.btn{
+			margin-top: calc(8px + .8vw);
+			padding: calc(1px + .1vw) calc(3px + .3vw);
+			min-width: 140px;
+			font-size: inherit;
+		}
+		.errorMsg{
+			color: #a00;
+			font-weight: 600;
+			font-size: 80%;
+		}
+	}
+}

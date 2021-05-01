@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './../../../services/http.service';
+import { GlobalService } from './../../../services/global.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -13,14 +14,17 @@ export class ItemlistComponent implements OnInit {
 	public keyword: string;
 	public page: number;
 	public user: any;
+	public showLoadMore: boolean;
 
   constructor(
   	private http: HttpService,
+  	private global: GlobalService,
   	private cookie: CookieService,
 	) { 
   	this.items = [];
   	this.keyword = "";
   	this.page = 1;
+  	this.showLoadMore = true;
 
 		this.user = this.cookie.get('user') != "" ? JSON.parse(this.cookie.get('user')) : null;
 	}
@@ -41,9 +45,19 @@ export class ItemlistComponent implements OnInit {
   		params,
   		(data: any) => {
   			console.log('onsuccess', data.items);
-  			this.items = data.items.data;
+  			if(data.items.current_page >= data.items.last_page) {
+  				this.showLoadMore = false;
+  			}
+  			data.items.data.forEach((ii: any) => {
+  				this.items.push(ii);
+  			});
   		}
 		);
+  }
+
+  public loadMore(): void {
+  	this.page++;
+  	this.getItemPaginated();
   }
 
 }

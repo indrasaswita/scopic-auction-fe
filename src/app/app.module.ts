@@ -9,8 +9,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { ScrolltotopComponent } from './components/scrolltotop/scrolltotop.component';
 import { ItemlistComponent } from './pages/auction/itemlist/itemlist.component';
 import { ItemrowComponent } from './pages/auction/itemlist/itemrow/itemrow.component';
 import { ItemdetailComponent } from './pages/auction/itemdetail/itemdetail.component';
@@ -24,16 +22,14 @@ import { AuctiontimerComponent } from './pages/auction/itemdetail/auctiontimer/a
 	declarations: [
 		AppComponent,
 		HomeComponent,
-		FooterComponent,
-		ScrolltotopComponent,
 		ItemlistComponent,
-  ItemrowComponent,
-  ItemdetailComponent,
-  DetailauctionComponent,
-  LoginComponent,
-  GlobalLoadingComponent,
-  CountdownComponent,
-  AuctiontimerComponent,
+		ItemrowComponent,
+		ItemdetailComponent,
+		DetailauctionComponent,
+		LoginComponent,
+		GlobalLoadingComponent,
+		CountdownComponent,
+		AuctiontimerComponent,
 	],
 	imports: [
 		BrowserModule,

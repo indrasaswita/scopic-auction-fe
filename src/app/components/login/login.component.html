@@ -1,11 +1,14 @@
-<p>login works!</p>
 
 <div class="login-wrapper">
 	<div class="login-form">
-		<input type="text" [(ngModel)]="userkey" placeholder="Fill with userkey (user1 - user8)">
-		<input type="password" [(ngModel)]="password" placeholder="Fill with userkey (password)">
+		LOGIN
+		<input type="text" [(ngModel)]="userkey" placeholder="userkey (user1 - user8)" (keydown)="keydown($event)">
+		<input type="password" [(ngModel)]="password" placeholder="password (password)" (keydown)="keydown($event)">
 		<button class="btn btn-primary" (click)="login()">
 			Sign In
 		</button>
+		<div class="errorMsg" *ngIf="errorMessage">
+			{{errorMessage}}
+		</div>
 	</div>
 </div>
